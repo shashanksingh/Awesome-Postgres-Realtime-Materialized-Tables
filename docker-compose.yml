@@ -5,7 +5,7 @@ name: event-ingestion
 services:
   postgres:
     build:
-      context: .
+      context: seed
       dockerfile: Dockerfile
     environment:
       POSTGRES_DB: warehouse
@@ -29,4 +29,10 @@ services:
     ports:
       - 8085:8081
     restart: on-failure
+
+  loadgenerator:
+    build:
+      context: event_generator
+      dockerfile: Dockerfile
+
 

@@ -19,8 +19,12 @@ select * from create_immv(
   'analytics.event_count',
   'select count(*) from analytics.events'
 );
-ALTER TABLE analytics.event_count REPLICA IDENTITY DEFAULT;
+select * from create_immv(
+  'analytics.event_type_count',
+  'select count(*), event_name from analytics.events  group by event_name '
+);
+ALTER TABLE analytics.event_type_count REPLICA IDENTITY DEFAULT;
 
 
 -- dummy data
-insert into analytics.events (event_name, data) values("CUSTOMER_VIEW", '{"title": "My first day at work", "Feeling": "Mixed feeling"}');
+insert into analytics.events (event_name, data) values('CUSTOMER_VIEW', '{"title": "My first day at work", "Feeling": "Mixed feeling"}');
