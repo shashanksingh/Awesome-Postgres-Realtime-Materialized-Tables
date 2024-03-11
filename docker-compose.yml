@@ -30,12 +30,6 @@ services:
       - 8085:8081
     restart: on-failure
 
-  loadgenerator:
-    build:
-      context: event_generator
-      dockerfile: Dockerfile
-    links:
-      - postgres:postgres
 
 
 

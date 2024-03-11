@@ -28,3 +28,12 @@ ALTER TABLE analytics.event_type_count REPLICA IDENTITY DEFAULT;
 
 -- dummy data
 insert into analytics.events (event_name, data) values('CUSTOMER_VIEW', '{"title": "My first day at work", "Feeling": "Mixed feeling"}');
+insert into analytics.events (event_name, data) values('CUSTOMER_VIEW', '{"title": "My second day at work", "Feeling": "Mixed feeling"}');
+
+-- Load test
+Insert into analytics.events (event_name, data)
+select 'CUSTOMER_VIEW'||id, '{"title":"My first day "}'
+from generate_series(1,10000) as t(id);
+
+SELECT CLOCK_TIMESTAMP();
+
