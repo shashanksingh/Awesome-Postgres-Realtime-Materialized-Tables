@@ -2,7 +2,7 @@
 import psycopg
 
 # Connect to an existing database
-with psycopg.connect("dbname=warehouse user=username password=password") as conn:
+with psycopg.connect("postgres://username:password@postgres:5432/warehouse?sslmode=disable") as conn:
     with conn.cursor() as cur:
         for number in range(0, 10000):
             cur.execute(
